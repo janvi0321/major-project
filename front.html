@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deepfake Detector</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎥 Deepfake Detector</h1>
+
+<input type="file" id="videoInput" accept="video/*">
+<br><br>
+<button onclick="uploadVideo()">Check Video</button>
+
+<div id="result"></div>
+
+<script>
+async function uploadVideo() {
+    const fileInput = document.getElementById("videoInput");
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Please select a video!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    document.getElementById("result").innerText = "Processing...";
+
+    const response = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+        document.getElementById("result").innerText = "Error: " + data.error;
+    } else {
+        document.getElementById("result").innerText =
+            `Result: ${data.result} (Confidence: ${data.confidence.toFixed(2)})`;
+    }
+}
+</script>
+
+</body>
+</html>

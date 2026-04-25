@@ -179,3 +179,24 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Large data
+data/
+frames/
+Celeb-real/
+Celeb-synthesis/
+
+# Models
+model.pth
+*.pth
+
+# Videos
+*.mp4
+
+# Env
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Zip
+*.zip
