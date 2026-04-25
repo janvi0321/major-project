@@ -180,18 +180,3 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
-
-# Models
-model.pth
-*.pth
-
-# Videos
-*.mp4
-
-# Env
-.venv/
-__pycache__/
-.ipynb_checkpoints/
-
-# Zip
-*.zip
